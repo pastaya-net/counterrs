@@ -3,7 +3,7 @@ name = "counterrs"
 description = "a replacement for my old javascript based counter"
 license = "GPLv3"
 repository = "https://github.com/pastadudes/pastaya.net"          # not 100% true lol
-version = "1.0.0-rc6"
+version = "1.0.0-rc7" # how much more rcs??
 edition = "2024"
 
 [lib]
