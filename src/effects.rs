@@ -2,6 +2,17 @@ use crate::TimeoutFuture;
 use crate::audio::*;
 use crate::bootstrap_image;
 
+/// Basic macro for playing audio
+/// Use like `audio!(AUDIO_69)`
+/// probably don't pass in something that doesn't have the `.with()` method
+macro_rules! audio {
+    ($audio:expr) => {
+        $audio.with(|a| {
+            let _ = a.play();
+        })
+    };
+}
+
 /// Plays a set of special effects on a certain "number"  
 /// All numbers that have a special effect:  
 /// - 1
@@ -16,28 +27,25 @@ use crate::bootstrap_image;
 /// - 12345
 /// - 9000
 /// - 80085
+
+// TODO: pls make it configurable at runtime
 pub async fn special_effects(count: u32) {
     // WARN: this code is made in yandere dev style
     match count {
         1 => {
-            AUDIO_1_1.with(|a| {
-                let _ = a.play();
-            });
+            audio!(AUDIO_1_1);
             TimeoutFuture::new(2000).await;
             AUDIO_1_2.with(|a| {
                 let _ = a.play();
             });
         }
-        21 => AUDIO_21.with(|a| {
-            let _ = a.play();
-        }),
-        42 => AUDIO_42.with(|a| {
-            let _ = a.play();
-        }),
+
+        21 => audio!(AUDIO_21),
+
+        42 => audio!(AUDIO_42),
+
         67 => {
-            AUDIO_67.with(|a| {
-                let _ = a.play();
-            });
+            audio!(AUDIO_67);
             let _ = bootstrap_image(
                 "https://i.kym-cdn.com/photos/images/newsfeed/003/128/463/b28",
                 Some("the 67 kid with the blue lasers coming out of his eyes".to_string()),
@@ -45,15 +53,13 @@ pub async fn special_effects(count: u32) {
                 Some("half".to_string()),
             );
         }
-        69 => AUDIO_69.with(|a| {
-            let _ = a.play();
-        }),
-        420 => AUDIO_420.with(|a| {
-            let _ = a.play();
-        }),
-        666 => AUDIO_666.with(|a| {
-            let _ = a.play();
-        }),
+
+        69 => audio!(AUDIO_69),
+
+        420 => audio!(AUDIO_420),
+
+        666 => audio!(AUDIO_666),
+
         777 => {
             let _ = bootstrap_image(
                 "https://media1.tenor.com/m/WUWygJ0Fwz8AAAAd/jago33-slot-machine.gif",
@@ -62,23 +68,16 @@ pub async fn special_effects(count: u32) {
                 Some("slotmachine".to_string()),
             );
 
-            AUDIO_777.with(|a| {
-                let _ = a.play();
-            });
+            audio!(AUDIO_777);
         }
-        1000 => AUDIO_1000.with(|a| {
-            let _ = a.play();
-            // TODO: add xbox gif at fixed bottom
-        }),
-        12345 => AUDIO_12345.with(|a| {
-            let _ = a.play();
-        }),
-        9000 => AUDIO_9000.with(|a| {
-            let _ = a.play();
-        }),
-        80085 => AUDIO_80085.with(|a| {
-            let _ = a.play();
-        }),
+
+        1000 => audio!(AUDIO_1000), // TODO: add xbox gif at fixed bottom
+
+        12345 => audio!(AUDIO_12345),
+
+        9000 => audio!(AUDIO_9000),
+
+        80085 => audio!(AUDIO_80085),
 
         _ => {}
     }
