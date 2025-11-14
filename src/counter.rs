@@ -21,29 +21,29 @@ pub fn resume_counter() {
 
 #[wasm_bindgen]
 pub fn init_counter() -> u32 {
-    let document = web_sys::window()
-        .expect("NO WINDOW!")
-        .document()
-        .expect("bruh no document git gud");
+    // let document = web_sys::window()
+    //     .expect("NO WINDOW!")
+    //     .document()
+    //     .expect("bruh no document git gud");
 
     let val = read_count_from_storage();
     COUNTER.with(|c| c.set(val));
-    document
-        .get_element_by_id("counter")
-        .unwrap()
-        .set_attribute("style", "display: block;")
-        .expect("can't set counter to show!");
+    // document
+    //     .get_element_by_id("counter")
+    //     .unwrap()
+    //     .set_attribute("style=", "display: block;")
+    //     .expect("can't set counter to show!");
 
-    document
-        .get_element_by_id("counterElement")
-        .unwrap()
-        .set_attribute("style", "display: block;")
-        .expect("can't set counter prelude to show!");
-    document
-        .get_element_by_id("resetbtn")
-        .unwrap()
-        .set_attribute("style", "display: block;")
-        .expect("can't set reset button to show!");
+    // document
+    //     .get_element_by_id("counterElement")
+    //     .unwrap()
+    //     .set_attribute("style=", "display: block;")
+    //     .expect("can't set counter prelude to show!");
+    // document
+    //     .get_element_by_id("resetbtn")
+    //     .unwrap()
+    //     .set_attribute("style=", "display: block;")
+    //     .expect("can't set reset button to show!");
     // oof, not good, i wish we could select by type
 
     val
